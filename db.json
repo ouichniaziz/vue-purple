@@ -1,0 +1,44 @@
+{
+  "employees": [
+    {
+      "id": "1",
+      "fullName": "Employee 1",
+      "occupation": "Software Engineer",
+      "department": "Engineering",
+      "employmentDate": "2020-01-10",
+      "terminationDate": "2024-01-20"
+    },
+    {
+      "id": "2",
+      "fullName": "Employee 2",
+      "occupation": "Product Manager",
+      "department": "Product",
+      "employmentDate": "2021-03-10",
+      "terminationDate": ""
+    },
+    {
+      "id": "3",
+      "fullName": "Employee 3",
+      "occupation": "UX Designer",
+      "department": "Design",
+      "employmentDate": "2022-05-10",
+      "terminationDate": "2025-05-20"
+    },
+    {
+      "id": "4",
+      "fullName": "Employee 4",
+      "occupation": "Marketing Specialist",
+      "department": "Marketing",
+      "employmentDate": "2023-07-10",
+      "terminationDate": ""
+    },
+    {
+      "id": "5",
+      "fullName": "Employee 5",
+      "occupation": "Data Analyst",
+      "department": "Analytics",
+      "employmentDate": "2024-09-10",
+      "terminationDate": "2026-09-20"
+    }
+  ]
+}

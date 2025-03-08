@@ -3,6 +3,6 @@ export type Employee = {
   fullName: string;
   occupation: string;
   department: string;
-  employmentDate: string;
-  terminationDate: string;
+  employmentDate: string | null;
+  terminationDate: string | null;
 };

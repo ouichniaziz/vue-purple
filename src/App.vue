@@ -1,45 +1,38 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
-import type { Employee } from "@/components/employees/types";
-import { columns } from "@/components/employees/columns";
+import { Button } from "@/components/ui/button";
+import Toaster from "@/components/ui/toast/Toaster.vue";
 import DataTable from "@/components/employees/data-table.vue";
+import EmployeeDialog from "@/components/employees/employee-dialog.vue";
+import { columns } from "@/components/employees/columns";
+import { provideEmployeeStore } from "@/composables/useEmployeeStore";
 
-const data = ref<Employee[]>([]);
+// Provide the employee store
+const { employees, loading, fetchEmployees } = provideEmployeeStore();
 
-async function getData(): Promise<Employee[]> {
-  return [
-    ...Array.from({ length: 50 }, (_, i) => ({
-      id: i + 1,
-      fullName: `Employee ${i + 1}`,
-      occupation: [
-        "Software Engineer",
-        "Product Manager",
-        "UX Designer",
-        "Marketing Specialist",
-        "Data Analyst",
-        "HR Manager",
-      ][i % 6],
-      department: [
-        "Engineering",
-        "Product",
-        "Design",
-        "Marketing",
-        "Analytics",
-        "Human Resources",
-      ][i % 6],
-      employmentDate: new Date(2020 + (i % 6), (i * 2) % 12, 10).toISOString().split("T")[0],
-      terminationDate: new Date(2024 + (i % 5), ((i + 3) * 2) % 12, 20).toISOString().split("T")[0],
-    })),
-  ];
-}
+// Create dialog state
+const createDialogOpen = ref(false);
 
-onMounted(async () => {
-  data.value = await getData();
-});
+// Fetch employees on mount
+onMounted(fetchEmployees);
 </script>
 
 <template>
+  <Toaster />
   <div class="container py-10 mx-auto">
-    <DataTable :columns="columns" :data="data" />
+    <div v-if="loading" class="flex justify-center items-center py-10">
+      <div
+        class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"
+      ></div>
+    </div>
+
+    <div v-else>
+      <DataTable :columns="columns" :data="employees" />
+
+      <div class="mt-6 flex justify-end">
+        <Button @click="createDialogOpen = true">Create Employee</Button>
+        <EmployeeDialog v-model:open="createDialogOpen" />
+      </div>
+    </div>
   </div>
 </template>

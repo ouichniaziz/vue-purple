@@ -64,6 +64,7 @@ const table = useVueTable({
 <template>
   <div>
     <div class="flex items-center py-4">
+      <!-- Input filter by fullName -->
       <Input
         class="max-w-sm"
         placeholder="Filter full name..."
