@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-vue-next";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import EmployeeDialog from "./employee-dialog.vue";
 import type { Employee } from "./types";
 import { useEmployeeStore } from "@/composables/useEmployeeStore";
@@ -22,14 +23,18 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
 const props = defineProps<{ employee: Employee }>();
 const { deleteEmployee } = useEmployeeStore();
+const router = useRouter();
 
 const editDialogOpen = ref(false);
 const alertDialogOpen = ref(false);
+
+const handleView = () => {
+  router.push(`/employee/${props.employee.id}`);
+};
 
 const handleDelete = async () => {
   await deleteEmployee(props.employee.id);
@@ -47,7 +52,7 @@ const handleDelete = async () => {
     </DropdownMenuTrigger>
     <DropdownMenuContent align="end">
       <DropdownMenuLabel>Actions</DropdownMenuLabel>
-      <DropdownMenuItem>View</DropdownMenuItem>
+      <DropdownMenuItem @click="handleView">View</DropdownMenuItem>
       <DropdownMenuItem @click="editDialogOpen = true">Edit</DropdownMenuItem>
       <DropdownMenuSeparator />
       <DropdownMenuItem @click="alertDialogOpen = true" class="text-destructive"
@@ -65,7 +70,7 @@ const handleDelete = async () => {
       <AlertDialogHeader>
         <AlertDialogTitle>Delete employee</AlertDialogTitle>
         <AlertDialogDescription>
-          This action cannot be undone. Are you sure ?
+          This action cannot be undone. Are you sure?
         </AlertDialogDescription>
       </AlertDialogHeader>
       <AlertDialogFooter class="flex justify-end space-x-4">

@@ -2,7 +2,7 @@
   "employees": [
     {
       "id": "1",
-      "fullName": "Employee 1",
+      "fullName": "James Anderson",
       "occupation": "Software Engineer",
       "department": "Engineering",
       "employmentDate": "2020-01-10",
@@ -10,35 +10,155 @@
     },
     {
       "id": "2",
-      "fullName": "Employee 2",
+      "fullName": "Olivia Taylor",
       "occupation": "Product Manager",
       "department": "Product",
       "employmentDate": "2021-03-10",
-      "terminationDate": ""
+      "terminationDate": null
     },
     {
       "id": "3",
-      "fullName": "Employee 3",
+      "fullName": "Liam Johnson",
       "occupation": "UX Designer",
       "department": "Design",
-      "employmentDate": "2022-05-10",
+      "employmentDate": "2025-06-15",
       "terminationDate": "2025-05-20"
     },
     {
       "id": "4",
-      "fullName": "Employee 4",
+      "fullName": "Sophia Martinez",
       "occupation": "Marketing Specialist",
       "department": "Marketing",
       "employmentDate": "2023-07-10",
-      "terminationDate": ""
+      "terminationDate": null
     },
     {
       "id": "5",
-      "fullName": "Employee 5",
+      "fullName": "Benjamin Clark",
       "occupation": "Data Analyst",
       "department": "Analytics",
       "employmentDate": "2024-09-10",
       "terminationDate": "2026-09-20"
+    },
+    {
+      "id": "6",
+      "fullName": "Mason Walker",
+      "occupation": "Front-End Developer",
+      "department": "Engineering",
+      "employmentDate": "2025-07-15",
+      "terminationDate": null
+    },
+    {
+      "id": "7",
+      "fullName": "Isabella Harris",
+      "occupation": "HR Manager",
+      "department": "Human Resources",
+      "employmentDate": "2020-11-20",
+      "terminationDate": "2024-03-01"
+    },
+    {
+      "id": "8",
+      "fullName": "Ethan Robinson",
+      "occupation": "Backend Developer",
+      "department": "Engineering",
+      "employmentDate": "2021-02-14",
+      "terminationDate": null
+    },
+    {
+      "id": "9",
+      "fullName": "Charlotte Lewis",
+      "occupation": "Graphic Designer",
+      "department": "Design",
+      "employmentDate": "2022-08-25",
+      "terminationDate": null
+    },
+    {
+      "id": "10",
+      "fullName": "Alexander Scott",
+      "occupation": "Project Manager",
+      "department": "Product",
+      "employmentDate": "2019-06-01",
+      "terminationDate": "2027-12-15"
+    },
+    {
+      "id": "11",
+      "fullName": "Amelia Moore",
+      "occupation": "Business Analyst",
+      "department": "Analytics",
+      "employmentDate": "2025-07-29",
+      "terminationDate": null
+    },
+    {
+      "id": "12",
+      "fullName": "William Young",
+      "occupation": "DevOps Engineer",
+      "department": "Engineering",
+      "employmentDate": "2020-04-12",
+      "terminationDate": "2025-02-28"
+    },
+    {
+      "id": "13",
+      "fullName": "Mia King",
+      "occupation": "Operations Manager",
+      "department": "Operations",
+      "employmentDate": "2021-09-19",
+      "terminationDate": null
+    },
+    {
+      "id": "14",
+      "fullName": "Elijah Green",
+      "occupation": "Content Writer",
+      "department": "Marketing",
+      "employmentDate": "2025-03-29",
+      "terminationDate": "2024-06-30"
+    },
+    {
+      "id": "15",
+      "fullName": "Harper Adams",
+      "occupation": "Sales Executive",
+      "department": "Sales",
+      "employmentDate": "2023-08-11",
+      "terminationDate": null
+    },
+    {
+      "id": "16",
+      "fullName": "Jack Carter",
+      "occupation": "QA Engineer",
+      "department": "Engineering",
+      "employmentDate": "2022-11-15",
+      "terminationDate": null
+    },
+    {
+      "id": "17",
+      "fullName": "Scarlett Wright",
+      "occupation": "SEO Specialist",
+      "department": "Marketing",
+      "employmentDate": "2020-05-08",
+      "terminationDate": "2024-07-10"
+    },
+    {
+      "id": "18",
+      "fullName": "Lucas Lopez",
+      "occupation": "Cloud Engineer",
+      "department": "Engineering",
+      "employmentDate": "2021-01-30",
+      "terminationDate": null
+    },
+    {
+      "id": "19",
+      "fullName": "Lily Perez",
+      "occupation": "Customer Support Specialist",
+      "department": "Support",
+      "employmentDate": "2023-03-18",
+      "terminationDate": null
+    },
+    {
+      "id": "20",
+      "fullName": "Owen Thomas",
+      "occupation": "Cybersecurity Analyst",
+      "department": "Security",
+      "employmentDate": "2025-03-29",
+      "terminationDate": "2025-10-10"
     }
   ]
 }

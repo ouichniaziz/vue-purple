@@ -1,12 +1,12 @@
-import { ref, provide, inject, type InjectionKey } from "vue";
+import { ref, provide, inject, type InjectionKey, type Ref } from "vue";
 import type { Employee } from "@/components/employees/types";
 import { employeeService } from "@/services/api";
 import { useToast } from "@/components/ui/toast/use-toast";
 
 // Define the type for our employee store
 type EmployeeStore = {
-  employees: Employee[];
-  loading: boolean;
+  employees: Ref<Employee[]>;
+  loading: Ref<boolean>;
   fetchEmployees: () => Promise<void>;
   createEmployee: (employee: Omit<Employee, "id">) => Promise<void>;
   updateEmployee: (employee: Employee) => Promise<void>;
@@ -20,7 +20,7 @@ const EmployeeStoreKey = Symbol() as InjectionKey<EmployeeStore>;
 export function provideEmployeeStore() {
   const { toast } = useToast();
   const employees = ref<Employee[]>([]);
-  const loading = ref(true);
+  const loading = ref(true); // `loading` is a Ref<boolean>
 
   // Fetch all employees
   const fetchEmployees = async () => {
@@ -45,14 +45,15 @@ export function provideEmployeeStore() {
       // Calculate the new id based on the last employee's id
       const lastEmployee = employees.value[employees.value.length - 1];
       const newId = lastEmployee
-        ? (parseInt(lastEmployee.id) + 1).toString()
+        ? (parseInt(lastEmployee.id, 10) + 1).toString()
         : "1";
 
-      // Create the employee with the new id
+      // Create the employee with the new id (note we are not passing `id` in the argument)
       const createdEmployee = await employeeService.create({
-        ...employee,
-        id: newId,
-      });
+        ...employee, // spread all other properties of the employee
+        id: newId, // add the new id to the employee object
+      } as Employee); // Assert the type here to treat the result as `Employee`
+
       employees.value = [...employees.value, createdEmployee];
       toast({
         title: "Success",
@@ -72,8 +73,8 @@ export function provideEmployeeStore() {
   const updateEmployee = async (employee: Employee) => {
     console.log("Updating employee in store:", employee);
     try {
-      const { id, ...employeeData } = employee;
-      await employeeService.update(id, employeeData);
+      const { id, ...employeeData } = employee; // The `id` is kept for the update call, but not passed into the update data
+      await employeeService.update(id, employeeData); // Only pass the `employeeData` to the update service
       // Update the local state
       employees.value = employees.value.map((emp) =>
         emp.id === id ? { ...employee } : emp
@@ -115,7 +116,7 @@ export function provideEmployeeStore() {
   // Create the store object
   const store: EmployeeStore = {
     employees,
-    loading,
+    loading, // This is now a Ref<boolean>
     fetchEmployees,
     createEmployee,
     updateEmployee,

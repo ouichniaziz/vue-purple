@@ -34,7 +34,7 @@ const props = defineProps<{
 
 const emit = defineEmits(["update:open"]);
 
-// Define validation schema
+// Define validation schema with optional employmentDate
 const formSchema = toTypedSchema(
   z.object({
     fullName: z
@@ -46,9 +46,13 @@ const formSchema = toTypedSchema(
     department: z
       .string()
       .min(2, { message: "Department must be at least 2 characters." }),
-    employmentDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, {
-      message: "Invalid date format (YYYY-MM-DD).",
-    }),
+    employmentDate: z
+      .string()
+      .regex(/^\d{4}-\d{2}-\d{2}$/, {
+        message: "Invalid date format (YYYY-MM-DD).",
+      })
+      .optional()
+      .or(z.literal("")),
     terminationDate: z.string().optional(),
   })
 );
@@ -63,7 +67,7 @@ const { handleSubmit, isFieldDirty, resetForm, setValues } = useForm({
     fullName: "",
     occupation: "",
     department: "",
-    employmentDate: new Date().toISOString().split("T")[0],
+    employmentDate: "",
     terminationDate: "",
   },
 });
@@ -77,7 +81,7 @@ watch(
         fullName: newEmployee.fullName,
         occupation: newEmployee.occupation,
         department: newEmployee.department,
-        employmentDate: newEmployee.employmentDate,
+        employmentDate: newEmployee.employmentDate || "",
         terminationDate: newEmployee.terminationDate || "",
       });
     } else {
@@ -101,7 +105,6 @@ watch(
 const onSubmit = handleSubmit(async (values) => {
   if (isEditMode() && props.employee) {
     // Update existing employee
-    console.log("Submitting update:", { ...props.employee, ...values });
     await updateEmployee({
       ...props.employee,
       ...values,
@@ -179,7 +182,7 @@ const handleClose = () => {
           :validate-on-blur="!isFieldDirty"
         >
           <FormItem>
-            <FormLabel>Employment Date</FormLabel>
+            <FormLabel>Employment Date (Optional)</FormLabel>
             <FormControl>
               <Input type="date" v-bind="componentField" />
             </FormControl>

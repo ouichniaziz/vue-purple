@@ -10,8 +10,12 @@ import { ArrowUpDown } from "lucide-vue-next";
 type BadgeVariant = "default" | "secondary" | "destructive" | "outline";
 
 const formatEmploymentDate = (
-  dateStr: string
+  dateStr: string | null
 ): { text: string; variant: BadgeVariant } => {
+  if (!dateStr || dateStr === "") {
+    return { text: "N/A", variant: "outline" };
+  }
+
   const date = new Date(dateStr);
   return date > new Date()
     ? { text: "Employed Soon", variant: "secondary" }
